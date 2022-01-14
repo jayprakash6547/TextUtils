@@ -13,11 +13,27 @@ const handleLoClick = () =>{
     setText(newText)
     props.showAlert("converted to Lowercase!","success");
 }
+
+const handleClearClick = () =>{
+    let newText = '';
+    setText(newText);
+    // props.showAlert("")
+}
+
 const handleOnChange =(event)=>{
     console.log("On change");
     setText(event.target.value)
 }
+const handleCopy = () => {
+    var text = document.getElementById("myBox");
+    text.select();
+    navigator.clipboard.writeText(text.value);
+}
 
+const handleExtraSpaces = () => {
+    let newText = text.split(/[ ]+/);
+    setText(newText.join(" "))
+}
     const [text,setText]=useState('')
     return (
         <>
@@ -28,6 +44,9 @@ const handleOnChange =(event)=>{
             </div>
             <button className="btn btn-primary mx-2 " onClick={handleUpClick} >Convert To Uppercase</button>
             <button className="btn btn-primary mx-2" onClick={handleLoClick} >Convert To Lowercase</button>
+            <button className="btn btn-primary mx-2" onClick={handleClearClick} >Clear Text</button>
+            <button className="btn btn-primary mx-2" onClick={handleCopy} >Copy Text</button>
+            <button className="btn btn-primary mx-2" onClick={handleExtraSpaces} >Remove Extra Space</button>
         </div>
         <div className="conatiner my-3" style={{color:props.mode==='dark'?'white':'#042743'}}>
             <h2>Your Text Summary</h2>
